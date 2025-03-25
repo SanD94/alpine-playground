@@ -1,7 +1,8 @@
-FROM r-base:alpine
+FROM alpine:latest
 
 # Install system dependencies
 RUN apk add --no-cache \
+		R \
     R-dev \
     gcc \
     musl-dev \

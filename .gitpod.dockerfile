@@ -28,7 +28,6 @@ RUN apk add --no-cache \
 		coreutils \
 		bash \
     libxml2-dev \
-		libressl-dev \
     openssl-dev \
     make \
     perl \

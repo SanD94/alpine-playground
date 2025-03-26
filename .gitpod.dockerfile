@@ -51,7 +51,7 @@ RUN install2.r -n 4 tidyverse
 #
 # # Gitpod user setup
 # # Add gitpod user
-RUN echo '%gitpod ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/gitpod \
+RUN echo '%gitpod ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/gitpod
 RUN addgroup -g 33333 gitpod && adduser -u 33333 -G gitpod -h /home/gitpod -s /bin/bash -D gitpod
 WORKDIR /workspace
 

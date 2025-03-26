@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-# ENV CRAN https://cran.r-project.org
+ENV CRAN https://cran.r-project.org
 ENV R_LIBS_SITE /usr/lib/R/library
 
 # Install system dependencies

@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-ENV CRAN https://cran.r-project.org
+# ENV CRAN https://cran.r-project.org
 ENV R_LIBS_SITE /usr/lib/R/library
 
 # Install system dependencies
@@ -31,7 +31,15 @@ RUN apk add --no-cache \
     openssl-dev \
     make \
     perl \
-    git
+# Gipod compat
+		git \
+		sudo  \
+		docker \
+		iptables\
+# VScode compat
+		libgcc \
+    gcompat \
+    libstdc++
 
 
 # Add default CRAN mirror
@@ -45,12 +53,12 @@ RUN Rscript -e "install.packages(c('littler', 'docopt'), INSTALL_opts = c('--no-
 
 # Install tidyverse
 RUN install2.r -n 4 tidyverse
-#
-# # Set the default library path
-# ENV R_LIBS_USER=/usr/local/lib/R/site-library
-#
-# # Gitpod user setup
-# # Add gitpod user
+
+# Set the default library path
+ENV R_LIBS_USER=/usr/local/lib/R/site-library
+
+# Gitpod user setup
+# Add gitpod user
 RUN echo '%gitpod ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/gitpod
 RUN addgroup -g 33333 gitpod && adduser -u 33333 -G gitpod -h /home/gitpod -s /bin/bash -D gitpod
 WORKDIR /workspace

@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.18.2
 
 ENV CRAN https://cran.r-project.org
 ENV R_LIBS_SITE /usr/lib/R/library
@@ -68,5 +68,3 @@ USER gitpod
 
 # Optional: Additional R packages or setup
 # RUN install2.r additional_packages
-
-CMD ["R"]

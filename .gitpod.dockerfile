@@ -61,7 +61,10 @@ ENV R_LIBS_USER=/usr/local/lib/R/site-library
 # Add gitpod user
 RUN echo '%gitpod ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/gitpod
 RUN addgroup -g 33333 gitpod && adduser -u 33333 -G gitpod -h /home/gitpod -s /bin/bash -D gitpod
+RUN mkdir /workspace && chown -hR gitpod:gitpod /workspace
 WORKDIR /workspace
+
+USER gitpod
 
 # Optional: Additional R packages or setup
 # RUN install2.r additional_packages

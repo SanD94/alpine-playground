@@ -26,8 +26,7 @@ RUN apk add --no-cache \
 		zip \
 		file \
 		coreutils \
-		bash && \
-    musl-dev \
+		bash \
     libxml2-dev \
 		libressl-dev \
     openssl-dev \

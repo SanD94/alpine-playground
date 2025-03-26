@@ -14,14 +14,15 @@ RUN apk add --no-cache \
     git
 
 # Install littler and create symlink
-RUN R -e "install.packages('littler', repos = 'http://cran.us.r-project.org')" && \
+RUN Rscript -e "install.packages('littler)" && \
     ln -s /usr/local/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r
+    ln -s /usr/local/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r
 
 # Create a directory for R packages
 RUN mkdir -p /usr/local/lib/R/site-library
 
 # Install tidyverse
-RUN install.r tidyverse
+RUN install2.r tidyverse
 
 # Set the default library path
 ENV R_LIBS_USER=/usr/local/lib/R/site-library
@@ -33,6 +34,6 @@ RUN addgroup -g 33333 gitpod && adduser -u 33333 -G gitpod -h /home/gitpod -s /b
 WORKDIR /workspace
 
 # Optional: Additional R packages or setup
-# RUN install.r additional_packages
+# RUN install2.r additional_packages
 
 CMD ["R"]

@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM frolvlad/alpine-glibc
 
 ENV CRAN https://cran.r-project.org
 ENV R_LIBS_SITE /usr/lib/R/library
@@ -40,7 +40,6 @@ RUN apk add --no-cache \
 		iptables\
 # VScode compat
 		libgcc \
-    gcompat \
     libstdc++
 
 

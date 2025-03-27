@@ -1,4 +1,4 @@
-FROM alpine:3.18.2
+FROM alpine:latest
 
 ENV CRAN https://cran.r-project.org
 ENV R_LIBS_SITE /usr/lib/R/library
@@ -21,6 +21,7 @@ RUN apk add --no-cache \
 		libjpeg-turbo-dev \
 		libpng-dev \
 		tiff-dev  \
+		curl \
 		curl-dev \
 		openblas-dev \
 		zip \
@@ -29,6 +30,7 @@ RUN apk add --no-cache \
 		bash \
     libxml2-dev \
     openssl-dev \
+		openssh \
     make \
     perl \
 # Gipod compat
@@ -45,6 +47,10 @@ RUN apk add --no-cache \
 # Add default CRAN mirror
 RUN echo "options(repos = c(CRAN = '${CRAN}'))" >> /usr/lib/R/etc/Rprofile.site
 
+# sshd config
+RUN echo "AllowTcpForwarding yes" >> /etc/ssh/sshd-config
+RUN echo "PermitTunnel       yes" >> /etc/ssh/sshd-config
+
 # Install littler and create symlink
 RUN Rscript -e "install.packages(c('littler', 'docopt'), INSTALL_opts = c('--no-docs', '--no-html'))"  && \
     ln -s ${R_LIBS_SITE}/littler/examples/install.r /usr/local/bin/install.r && \
@@ -52,7 +58,7 @@ RUN Rscript -e "install.packages(c('littler', 'docopt'), INSTALL_opts = c('--no-
     ln -s ${R_LIBS_SITE}/littler/bin/r /usr/local/bin/r
 
 # Install tidyverse
-RUN install2.r -n 4 tidyverse
+# RUN install2.r -n 4 tidyverse
 
 # Set the default library path
 ENV R_LIBS_USER=/usr/local/lib/R/site-library

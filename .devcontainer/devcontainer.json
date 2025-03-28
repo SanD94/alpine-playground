@@ -7,8 +7,6 @@
 	"features": {
 		"ghcr.io/cirolosapio/devcontainers-features/alpine-bash:0": {},
 		"ghcr.io/cirolosapio/devcontainers-features/alpine-git:0": {},
-		"ghcr.io/larsnieuwenhuizen/features/neovim:0": {},
-		"ghcr.io/braun-daniel/devcontainer-features/fzf:1": {}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.

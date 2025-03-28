@@ -1,5 +1,2 @@
 image:
-  file: .gitpod.dockerfile
-
-tasks:
-  - init: R -e "tidyverse::tidyverse_packages()"
+  file: .gitpod.alpine.dockerfile
